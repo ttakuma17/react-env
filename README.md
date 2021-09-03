@@ -69,4 +69,79 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-### 手順を以下へ記載する
+### install procedure
+
+1. nodeとnpmのインストールが完了しているかを確認する
+
+下記コマンドを実行してバージョン情報がでたらOK
+
+　node -v / npm -v
+
+2.Reactのプロジェクトを作成するフォルダを指定する
+
+　ターミナルで作成用ディレクトリに移動して下記コマンドを実行
+
+　npx create react-app プロジェクト名
+
+3.プロジェクトの作成が完了したら
+
+　cd プロジェクト名
+　npm start / yarn start　などのメッセージがでるはずなので
+　いずれか実行してみて、localhost:3000にReactの初期画面が表示されるかを確認する
+
+4.一旦ここで、Githubへプッシュ
+
+5.ESLintの設定について
+
+ create react app で作成したアプリはデフォルトでESLintが導入されているが、初期設定は必要
+
+ VScode側のESLintの拡張をダウンロード
+ 　＊ワークスペースでの有効化をすること
+
+ワークスペースの設定として書きを追加すると良い（例）
+
+ "editor.formatOnSave": false,
+
+"editor.codeActionsOnSave": {
+
+"source.fixAll.eslint": true
+}
+
+＊エディタ自体の設定による意図しないフォーマットを防ぐことが目的
+
+
+6.ESLintの初期設定
+　以下コマンドを実行する
+
+　npx eslint --init / yarn run -s eslint --init
+
+ 対話式で設定が始まる
+
+ How would you like to use ESLint?
+ What type of modules does your project use?
+ Which framework does your project use?
+ Does your project use TypeScript? No / Yes
+ Where does your code run?
+ How would you like to define a style for your project?
+ Which style guide do you want to follow? (Use arrow keys)
+ What format do you want your config file to be in? (Use arrow keys)
+ Would you like to install them now with npm? No / Yes
+
+　指定したいものを選択すると設定が完了する
+　エラーがでたら、エラーメッセージに沿って対応
+
+7.スタイルガイドの導入を実施
+
+　airbnbなら下記のコマンドでパッケージをインストールする
+
+　yarn add -D eslint-config-airbnb
+
+　その他なら自身で調べて実施
+
+
+8.有効化されたら、再度localhost:3000で挙動を確認
+
+　→発生しているエラーを解消すれば完了
+
+
+　
