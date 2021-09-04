@@ -6,7 +6,7 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
-    // 'prettier',//記載されていると自動整形されない
+    'prettier',
   ],
   parserOptions: {
     ecmaFeatures: {
