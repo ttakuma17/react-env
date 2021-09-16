@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+}
+input[type="text"] {
+  padding: 0;
+  line-height: 28px;
+  height: 25px;
+  font-size: 15px;
+}
+
+button:hover {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(23 35 123);
+}
