@@ -3,8 +3,6 @@ import { react } from "@babel/types"; // eslint-disable-line
 import logo from "./logo.svg";
 import "./App.css";
 
-const a = 1;
-// console.log(b);
 function App() {
   return (
     <div className="App">
