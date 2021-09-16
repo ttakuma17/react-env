@@ -5,15 +5,16 @@
   "dependencies": {
     "@babel/types": "^7.12.17",
     "@craco/craco": "^6.3.0",
+    "@headlessui/react": "^1.4.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "autoprefixer": "^9.8.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.0.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.14",
-    "autoprefixer": "^9.8.6"
+    "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "craco start",

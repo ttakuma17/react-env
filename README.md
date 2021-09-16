@@ -178,6 +178,20 @@ setting.json でエラーを無視するように設定
 エラー出たので一旦アンインストールして下記コマンドを実施する
 npm install tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9
 
+https://zenn.dev/junki555/articles/4a262d03c58c4e993b95
+
+https://hacknote.jp/archives/25914/
+
+通常の挙動を確認したので、
+
 # UI ライブラリ
 
 Headless UI を使ってみる
+ドキュメントを見てインストールを実施
+
+npm install @headlessui/react 　のコマンドを流す
+
+https://headlessui.dev/
+https://github.com/tailwindlabs/headlessui/tree/main/packages/%40headlessui-react
+
+とりあえず、
