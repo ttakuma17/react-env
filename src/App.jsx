@@ -190,6 +190,8 @@ export const App = () => {
   };
   return (
     <>
+      <h1>CSSテスト</h1>
+      <h2>CSSテスト</h2>
       <div style={bodyStyle}>
         <header style={headerStyle}>Manage Your Todo</header>
         <InputTodo

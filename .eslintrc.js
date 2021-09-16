@@ -14,6 +14,7 @@ module.exports = {
   plugins: ["react"],
   rules: {
     "import/prefer-default-export": "off",
+    "global-require": "off",
     "react/prop-types": "off",
     "react/button-has-type": "off",
     "arrow-body-style": "off",

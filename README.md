@@ -71,36 +71,36 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### install procedure
 
-1. nodeとnpmのインストールが完了しているかを確認する
+1. node と npm のインストールが完了しているかを確認する
 
-下記コマンドを実行してバージョン情報がでたらOK
+下記コマンドを実行してバージョン情報がでたら OK
 
-　node -v / npm -v
+node -v / npm -v
 
-2.Reactのプロジェクトを作成するフォルダを指定する
+2.React のプロジェクトを作成するフォルダを指定する
 
-　ターミナルで作成用ディレクトリに移動して下記コマンドを実行
+ターミナルで作成用ディレクトリに移動して下記コマンドを実行
 
-　npx create react-app プロジェクト名
+npx create react-app プロジェクト名
 
 3.プロジェクトの作成が完了したら
 
-　cd プロジェクト名
-　npm start / yarn start　などのメッセージがでるはずなので
-　いずれか実行してみて、localhost:3000にReactの初期画面が表示されるかを確認する
+cd プロジェクト名
+　 npm start / yarn start 　などのメッセージがでるはずなので
+　いずれか実行してみて、localhost:3000 に React の初期画面が表示されるかを確認する
 
-4.一旦ここで、Githubへプッシュ
+4.一旦ここで、Github へプッシュ
 
-5.ESLintの設定について
+5.ESLint の設定について
 
- create react app で作成したアプリはデフォルトでESLintが導入されているが、初期設定は必要
+create react app で作成したアプリはデフォルトで ESLint が導入されているが、初期設定は必要
 
- VScode側のESLintの拡張をダウンロード
- 　＊ワークスペースでの有効化をすること
+VScode 側の ESLint の拡張をダウンロード
+　＊ワークスペースでの有効化をすること
 
 ワークスペースの設定として書きを追加すると良い（例）
 
- "editor.formatOnSave": false,
+"editor.formatOnSave": false,
 
 "editor.codeActionsOnSave": {
 
@@ -109,39 +109,75 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ＊エディタ自体の設定による意図しないフォーマットを防ぐことが目的
 
-
-6.ESLintの初期設定
+6.ESLint の初期設定
 　以下コマンドを実行する
 
-　npx eslint --init / yarn run -s eslint --init
+npx eslint --init / yarn run -s eslint --init
 
- 対話式で設定が始まる
+対話式で設定が始まる
 
- How would you like to use ESLint?
- What type of modules does your project use?
- Which framework does your project use?
- Does your project use TypeScript? No / Yes
- Where does your code run?
- How would you like to define a style for your project?
- Which style guide do you want to follow? (Use arrow keys)
- What format do you want your config file to be in? (Use arrow keys)
- Would you like to install them now with npm? No / Yes
+How would you like to use ESLint?
+What type of modules does your project use?
+Which framework does your project use?
+Does your project use TypeScript? No / Yes
+Where does your code run?
+How would you like to define a style for your project?
+Which style guide do you want to follow? (Use arrow keys)
+What format do you want your config file to be in? (Use arrow keys)
+Would you like to install them now with npm? No / Yes
 
-　指定したいものを選択すると設定が完了する
+指定したいものを選択すると設定が完了する
 　エラーがでたら、エラーメッセージに沿って対応
 
 7.スタイルガイドの導入を実施
 
-　airbnbなら下記のコマンドでパッケージをインストールする
+airbnb なら下記のコマンドでパッケージをインストールする
 
-　yarn add -D eslint-config-airbnb
+yarn add -D eslint-config-airbnb
 
-　その他なら自身で調べて実施
+その他なら自身で調べて実施
 
+8.有効化されたら、再度 localhost:3000 で挙動を確認
 
-8.有効化されたら、再度localhost:3000で挙動を確認
+→ 発生しているエラーを解消すれば完了
 
-　→発生しているエラーを解消すれば完了
+# CSS ライブラリ
 
+Tailwind を使ってみる
 
-　
+1.環境構築を実施する
+https://tailwindcss.com/docs/guides/create-react-app
+
+npm install -D tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9
+
+npm install @craco/craco
+
+インストールが完了したら、package.json ファイルの中身を書き換える
+
+Before
+"start": "react-scripts start",
+"build": "react-scripts build",
+"test": "react-scripts test",
+After
+"start": "craco start",
+"build": "craco build",
+"test": "craco test",
+
+書き換えが終わったら、プロジェクトのルートディレクトリに対して craco.config.js を作成
+
+tailwind と autoprefixer を POSTCSS のプラグインとしてインストールする
+tailwind は一番はじめにインストールしたので、POSTCSS のと Autoprefixer を追加インストールは不要
+
+VSCode の issue が発生した
+Unknown at rule @tailwindcss(unknownAtRules) for base, components, utilities (Tailwind CSS) #103163
+https://github.com/microsoft/vscode/issues/103163
+
+https://qiita.com/masakinihirota/items/bd8c07aa54efad307588
+setting.json でエラーを無視するように設定
+
+エラー出たので一旦アンインストールして下記コマンドを実施する
+npm install tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9
+
+# UI ライブラリ
+
+Headless UI を使ってみる
