@@ -4,7 +4,7 @@ import { IncompleteTodo } from "./components/IncompleteTodo";
 import { InputTodo } from "./components/InputTodo";
 import { PendingTodo } from "./components/PendingTodo";
 import { WorkingTodo } from "./components/WorkingTodo";
-import "./styles.css";
+// import "./styles.css";
 
 export const App = () => {
   const [todoText, setTodoText] = useState("");
@@ -141,25 +141,7 @@ export const App = () => {
       }
     }
   };
-  const bodyStyle = {
-    fontFamily: "sans-serif",
-    color: "rgb(23 35 123)",
-  };
-  const headerStyle = {
-    width: "400px",
-    color: "white",
-    borderBottom: "solid 1px",
-    backgroundColor: "rgb(23 35 123)",
-    padding: "10px",
-    fontWeight: "700",
-  };
-  const footerStyle = {
-    backgroundColor: "rgb(23 35 123)",
-    color: "white",
-    width: "400px",
-    padding: "0 10px 0 10px",
-    textAlign: "right",
-  };
+
   const todoAreaLayout = {
     width: "400px",
     minHeight: "50px",
@@ -190,10 +172,8 @@ export const App = () => {
   };
   return (
     <>
-      <h1>CSSテスト</h1>
-      <h2>CSSテスト</h2>
-      <div style={bodyStyle}>
-        <header style={headerStyle}>Manage Your Todo</header>
+      <div className="font-body">
+        <header>Manage Your Todo</header>
         <InputTodo
           todoText={todoText}
           onChange={onChangeTodoText}
@@ -241,7 +221,7 @@ export const App = () => {
           listText={listText}
           button={button}
         />
-        <footer style={footerStyle}>Try to complete todo !</footer>
+        <footer>Try to complete todo !</footer>
       </div>
     </>
   );

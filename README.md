@@ -194,4 +194,4 @@ npm install @headlessui/react 　のコマンドを流す
 https://headlessui.dev/
 https://github.com/tailwindlabs/headlessui/tree/main/packages/%40headlessui-react
 
-とりあえず、
+とりあえず完了
