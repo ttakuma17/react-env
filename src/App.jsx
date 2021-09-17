@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { CompleteTodo } from "./components/CompleteTodo";
+import { Footer } from "./components/Footer";
+import { Header } from "./components/Header";
 import { IncompleteTodo } from "./components/IncompleteTodo";
 import { InputTodo } from "./components/InputTodo";
 import { PendingTodo } from "./components/PendingTodo";
 import { WorkingTodo } from "./components/WorkingTodo";
-// import "./styles.css";
 
 export const App = () => {
   const [todoText, setTodoText] = useState("");
@@ -142,86 +143,37 @@ export const App = () => {
     }
   };
 
-  const todoAreaLayout = {
-    width: "400px",
-    minHeight: "50px",
-    padding: "8px",
-    margin: "8px",
-  };
-  const listRow = {
-    display: "flex",
-    alignItems: "center",
-    paddingBottom: "4px",
-  };
-  const listTitle = {
-    textAlign: "left",
-    borderTop: "double 1px",
-    borderBottom: "double 1px",
-    paddingTop: "3px",
-    paddingBottom: "3px",
-  };
-  const listText = {
-    margin: "0",
-  };
-  const button = {
-    padding: "4px 10px",
-    marginLeft: "5px",
-    color: "rgb(23 35 123)",
-    border: "solid 0.2px",
-    borderRadius: "24px",
-  };
   return (
     <>
       <div className="font-body">
-        <header>Manage Your Todo</header>
+        <Header />
         <InputTodo
           todoText={todoText}
           onChange={onChangeTodoText}
           onClick={onClickAdd}
-          button={button}
         />
         <IncompleteTodo
           incompleteTodos={incompleteTodo}
           onClickWorking={onClickWorking}
           onClickPending={onClickPending}
           onClickDelete={onClickDelete}
-          todoAreaLayout={todoAreaLayout}
-          listRow={listRow}
-          listTitle={listTitle}
-          listText={listText}
-          button={button}
         />
         <WorkingTodo
           workingTodos={workingTodo}
           onClickPending={onClickPending}
           onClickDone={onClickDone}
-          todoAreaLayout={todoAreaLayout}
-          listRow={listRow}
-          listTitle={listTitle}
-          listText={listText}
-          button={button}
         />
         <PendingTodo
           pendingTodos={pendingTodo}
           onClickWorking={onClickWorking}
           onClickBackTodo={onClickBackTodo}
-          todoAreaLayout={todoAreaLayout}
-          listRow={listRow}
-          listTitle={listTitle}
-          listText={listText}
-          button={button}
         />
         <CompleteTodo
           completeTodos={completeTodo}
           onClickBackTodo={onClickBackTodo}
           onClickDelete={onClickDelete}
-          todoAreaLayout={todoAreaLayout}
-          listRow={listRow}
-          listTitle={listTitle}
-          listText={listText}
-          button={button}
         />
-        <footer>Try to complete todo !</footer>
+        <Footer />
       </div>
     </>
   );

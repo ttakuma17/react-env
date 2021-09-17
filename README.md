@@ -194,4 +194,12 @@ npm install @headlessui/react 　のコマンドを流す
 https://headlessui.dev/
 https://github.com/tailwindlabs/headlessui/tree/main/packages/%40headlessui-react
 
-とりあえず完了
+form のスタイリングの際に以下をインストールしました、
+@tailwindcss/forms
+https://absarcs.info/how-to/customize-form-tailwind-css/
+
+１．header / footer をコンポーネント化する
+２．Header ページのリンクを記載する
+３．スタイルを適用する
+４．ルーティングの実装を行う
+５．UI ライブラリの適用をしてみる

@@ -4,7 +4,7 @@ export const CompleteTodo = (props) => {
   const { completeTodos, onClickBackTodo, onClickDelete } = props;
   return (
     <div className="bg-gray-50 rounded-md p-1 m-2">
-      <p className="text-white text-lg text-center bg-blue-800 border-solid border4 border-blue-800 rounded-md w-1/4">
+      <p className="text-white text-lg text-center bg-blue-400 border-solid border4 border-blue-400 rounded-md w-1/4">
         Complete Todo List
       </p>
       <ul>
