@@ -198,8 +198,7 @@ form のスタイリングの際に以下をインストールしました、
 @tailwindcss/forms
 https://absarcs.info/how-to/customize-form-tailwind-css/
 
-１．header / footer をコンポーネント化する
-２．Header ページのリンクを記載する
-３．スタイルを適用する
-４．ルーティングの実装を行う
-５．UI ライブラリの適用をしてみる
+１．header / footer をコンポーネント化する → 　完了
+２．スタイルを適用する　 → 　完了
+３．ルーティングの実装を行う
+４．UI ライブラリの適用をしてみる

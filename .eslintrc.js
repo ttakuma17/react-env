@@ -13,6 +13,7 @@ module.exports = {
   },
   plugins: ["react"],
   rules: {
+    "no-console": "off",
     "import/prefer-default-export": "off",
     "global-require": "off",
     "react/prop-types": "off",

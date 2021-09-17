@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
 import { CompleteTodo } from "./components/CompleteTodo";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
@@ -7,11 +6,8 @@ import { IncompleteTodo } from "./components/IncompleteTodo";
 import { InputTodo } from "./components/InputTodo";
 import { PendingTodo } from "./components/PendingTodo";
 import { WorkingTodo } from "./components/WorkingTodo";
-import { Home } from "./Home";
-import { TodoPage } from "./TodoPage";
-import { User } from "./User";
 
-export const App = () => {
+export const TodoPage = () => {
   const [todoText, setTodoText] = useState("");
   const [incompleteTodo, setIncompleteTodo] = useState([
     "未完了のTodo１",
@@ -146,60 +142,36 @@ export const App = () => {
       }
     }
   };
-
   return (
-    <>
-      <BrowserRouter>
-        <div className="font-body">
-          <Header />
-          <Link to="/">Home</Link>
-          <br />
-          <Link to="/todopage">Todo List</Link>
-          <br />
-          <Link to="/user">User</Link>
-          <Home />
-
-          <User />
-          <InputTodo
-            todoText={todoText}
-            onChange={onChangeTodoText}
-            onClick={onClickAdd}
-          />
-          <IncompleteTodo
-            incompleteTodos={incompleteTodo}
-            onClickWorking={onClickWorking}
-            onClickPending={onClickPending}
-            onClickDelete={onClickDelete}
-          />
-          <WorkingTodo
-            workingTodos={workingTodo}
-            onClickPending={onClickPending}
-            onClickDone={onClickDone}
-          />
-          <PendingTodo
-            pendingTodos={pendingTodo}
-            onClickWorking={onClickWorking}
-            onClickBackTodo={onClickBackTodo}
-          />
-          <CompleteTodo
-            completeTodos={completeTodo}
-            onClickBackTodo={onClickBackTodo}
-            onClickDelete={onClickDelete}
-          />
-          <Footer />
-        </div>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/todopage">
-            <TodoPage />
-          </Route>
-          <Route path="/user">
-            <User />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    </>
+    <div className="font-body">
+      <Header />
+      <InputTodo
+        todoText={todoText}
+        onChange={onChangeTodoText}
+        onClick={onClickAdd}
+      />
+      <IncompleteTodo
+        incompleteTodos={incompleteTodo}
+        onClickWorking={onClickWorking}
+        onClickPending={onClickPending}
+        onClickDelete={onClickDelete}
+      />
+      <WorkingTodo
+        workingTodos={workingTodo}
+        onClickPending={onClickPending}
+        onClickDone={onClickDone}
+      />
+      <PendingTodo
+        pendingTodos={pendingTodo}
+        onClickWorking={onClickWorking}
+        onClickBackTodo={onClickBackTodo}
+      />
+      <CompleteTodo
+        completeTodos={completeTodo}
+        onClickBackTodo={onClickBackTodo}
+        onClickDelete={onClickDelete}
+      />
+      <Footer />
+    </div>
   );
 };
