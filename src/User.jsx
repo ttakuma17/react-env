@@ -5,9 +5,7 @@ export const User = () => {
   return (
     <div>
       <h1>User Page</h1>
-      <Link to="/">Home</Link>
-      <br />
-      <Link to="/todo">Todo List</Link>
+      <Link to="/user/detail">User Detail</Link>
     </div>
   );
 };

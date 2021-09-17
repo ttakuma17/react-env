@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { CompleteTodo } from "./components/CompleteTodo";
-import { Footer } from "./components/Footer";
-import { Header } from "./components/Header";
 import { IncompleteTodo } from "./components/IncompleteTodo";
 import { InputTodo } from "./components/InputTodo";
 import { PendingTodo } from "./components/PendingTodo";
@@ -144,7 +142,6 @@ export const TodoPage = () => {
   };
   return (
     <div className="font-body">
-      <Header />
       <InputTodo
         todoText={todoText}
         onChange={onChangeTodoText}
@@ -171,7 +168,6 @@ export const TodoPage = () => {
         onClickBackTodo={onClickBackTodo}
         onClickDelete={onClickDelete}
       />
-      <Footer />
     </div>
   );
 };
