@@ -201,6 +201,61 @@ https://absarcs.info/how-to/customize-form-tailwind-css/
 １．header / footer をコンポーネント化する → 　完了
 ２．スタイルを適用する　 → 　完了
 ３．ルーティングの実装を行う　 → 　完了　複雑なルーティングを設定するときにはコンポーネントを分けることにする
+
+↑：9 月 17 日に完了
+
 ４．UI ライブラリの適用をしてみる　
 　　　　 Home ページにカレンダーを表示させてみる
 　　　　 Todo アプリの追加、更新、削除ボタンを使ってメッセージを表示させる
+
+A.各 TODO の個数制限を加える
+　　 Working は３つまで　
+　　 Pending は 5 つまで
+
+指定個数以上を追加しようとした時に Toast が表示されるように実装してみる
+　　https://react-hot-toast.com/
+　　https://react-hot-toast.com/docs
+
+ボタンを押した時に Toase を表示するを実装してみたところ、
+配列を編集する onClick 関数が動かなくなってしまった
+
+B.HeadlessUI の Disclosure を使ってアプリの操作説明を Home ページに設定してみる
+　　https://headlessui.dev/react/disclosure
+　　　 → 　テスト的に何個か設定
+
+heroicons というものがあるらしい
+使ってみる
+https://dev.appswingby.com/%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89/heroicons-v1-0/
+
+ERESOLVE overriding peer dependency
+Found: csstype@3.0.9
+npm WARN node_modules/csstype
+
+Could not resolve dependency:
+npm WARN peer csstype@"^2.6.2" from goober@2.0.41
+npm WARN node_modules/goober
+npm WARN goober@"^2.0.35" from react-hot-toast@2.1.1
+npm WARN node_modules/react-hot-toast
+
+https://github.com/tailwindlabs/heroicons
+
+上記エラーからパッケージの解決ができていないように想定できたので
+一旦、uninstall の上
+npm install --save --legacy-peer-deps @heroicons/react
+にてインストールし直した
+
+一旦 Home ページへの記載は完了したので OK
+中身の文章は後から考えることにする
+
+C.Home ページにカレンダーを表示させてみる
+　　カレンダー表示は React-calendar を使う
+　　https://github.com/wojtekmaj/react-calendar
+　　　 → CompleteTodo に入った日付を記録して、
+　　　　　カレンダー内に Todo を反映させられるようにしてみたい
+　　　　　長いこと更新されていなかったので Fullcalendar 使ってみる
+
+https://fullcalendar.io/docs/react
+
+５．TailwindCSS を使ってレスポンシブデザインへ変えてみる
+
+→ ここまで終わったら、課題完了の報告を行う
