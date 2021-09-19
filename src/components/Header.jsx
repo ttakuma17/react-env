@@ -7,7 +7,9 @@ export const Header = () => {
   return (
     <BrowserRouter>
       <header className="bg-blue-500 p-2 block align-middle flex">
-        <p className="text-white mt-0 mb-0 p-1">Your Todo</p>
+        <h1 className="text-2xl text-white mt-0 mb-0 p-1 font-sans">
+          Your Todo List
+        </h1>
         <div className="flex w-25px ml-auto">
           <Link className="text-white no-underline mr-2 p-1 flex" to="/">
             Home

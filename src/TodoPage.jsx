@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { CompleteTodo } from "./components/CompleteTodo";
 import { IncompleteTodo } from "./components/IncompleteTodo";
 import { InputTodo } from "./components/InputTodo";
@@ -23,6 +24,24 @@ export const TodoPage = () => {
     "完了したTodo１",
     "完了したTodo2",
   ]);
+  const toastNotify = (action) => {
+    switch (action) {
+      case "Input":
+        toast("Added new Todo");
+        break;
+      case "Update":
+        toast("Updated Todo status");
+        break;
+      case "Delete":
+        toast("Deleted your Todo");
+        break;
+      case "Complete":
+        toast("Completed your Todo !!!");
+        break;
+      // no default
+    }
+  };
+
   const onChangeTodoText = (event) => {
     setTodoText(event.target.value);
   };
@@ -31,6 +50,7 @@ export const TodoPage = () => {
     const newIncompleteTodo = [...incompleteTodo, todoText];
     setIncompleteTodo(newIncompleteTodo);
     setTodoText("");
+    toastNotify("Input");
   };
   const onClickDelete = (index, listname) => {
     switch (listname) {
@@ -38,6 +58,7 @@ export const TodoPage = () => {
         const newIncompleteTodo = [...incompleteTodo];
         newIncompleteTodo.splice(index, 1);
         setIncompleteTodo(newIncompleteTodo);
+        toastNotify("Delete");
         break;
       }
 
@@ -45,6 +66,7 @@ export const TodoPage = () => {
         const newCompleteTodo = [...completeTodo];
         newCompleteTodo.splice(index, 1);
         setCompleteTodo(newCompleteTodo);
+        toastNotify("Delete");
         break;
       }
       default: {
@@ -52,6 +74,7 @@ export const TodoPage = () => {
       }
     }
   };
+
   const onClickWorking = (index, listname) => {
     switch (listname) {
       case "incompletelist": {
@@ -63,6 +86,7 @@ export const TodoPage = () => {
         ];
         setWorkingTodo(newWorkingTodoForIncomplete);
         setIncompleteTodo(newIncompleteTodo);
+        toastNotify("Update");
         break;
       }
       case "pendinglist": {
@@ -71,6 +95,7 @@ export const TodoPage = () => {
         const newWorkingTodoForPending = [...workingTodo, pendingTodo[index]];
         setWorkingTodo(newWorkingTodoForPending);
         setPendingTodo(newPendingTodo);
+        toastNotify("Update");
         break;
       }
       default: {
@@ -89,6 +114,7 @@ export const TodoPage = () => {
         ];
         setPendingTodo(newPendingTodoforIncomplete);
         setIncompleteTodo(newIncompleteTodo);
+        toastNotify("Update");
         break;
       }
       case "workinglist": {
@@ -97,6 +123,7 @@ export const TodoPage = () => {
         const newPendingTodoForWorking = [...pendingTodo, workingTodo[index]];
         setPendingTodo(newPendingTodoForWorking);
         setWorkingTodo(newWorkingTodo);
+        toastNotify("Update");
         break;
       }
       default: {
@@ -110,6 +137,7 @@ export const TodoPage = () => {
     const newCompleteTodo = [...completeTodo, workingTodo[index]];
     setWorkingTodo(newWorkingTodo);
     setCompleteTodo(newCompleteTodo);
+    toastNotify("Complete");
   };
   const onClickBackTodo = (index, listname) => {
     switch (listname) {
@@ -122,6 +150,7 @@ export const TodoPage = () => {
         ];
         setIncompleteTodo(newIncompleteTodoBackFromComplete);
         setCompleteTodo(newCompleteTodo);
+        toastNotify("Update");
         break;
       }
       case "pendinglist": {
@@ -133,6 +162,7 @@ export const TodoPage = () => {
         ];
         setIncompleteTodo(newIncompleteTodoBackFromPending);
         setPendingTodo(newPendingTodo);
+        toastNotify("Update");
         break;
       }
       default: {
@@ -142,6 +172,7 @@ export const TodoPage = () => {
   };
   return (
     <div className="font-body">
+      <Toaster />
       <InputTodo
         todoText={todoText}
         onChange={onChangeTodoText}

@@ -2,9 +2,8 @@ module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
-    fontFamily: {
-      body: ["sans-serif", "メイリオ", "Arial", "Impact"],
+    extend: {
+      fontFamily: {},
     },
     screens: {
       tablet: "640px",

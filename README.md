@@ -143,89 +143,80 @@ yarn add -D eslint-config-airbnb
 
 # CSS ライブラリ
 
-Tailwind を使ってみる
+Tailwind を使用
 
-1.環境構築を実施する
+＊＊環境構築を実施する＊＊
 https://tailwindcss.com/docs/guides/create-react-app
+その他、参照記事
+https://zenn.dev/junki555/articles/4a262d03c58c4e993b95
+https://hacknote.jp/archives/25914/
 
-npm install -D tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9
-
+実施コマンド
+npm install -D tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9 \*この時点で、TailwindCSS、PostCSS、AutoPrefixer のダウンロードが完了
 npm install @craco/craco
 
-インストールが完了したら、package.json ファイルの中身を書き換える
+インストールが完了したら、package.json ファイルの中身を"react-scripts" → "craco"へ書き換える
 
+@package.json
 Before
 "start": "react-scripts start",
 "build": "react-scripts build",
 "test": "react-scripts test",
+
 After
 "start": "craco start",
 "build": "craco build",
 "test": "craco test",
 
-書き換えが終わったら、プロジェクトのルートディレクトリに対して craco.config.js を作成
+書き換えが終わったら、プロジェクトのルートディレクトリにて craco.config.js を作成
 
 tailwind と autoprefixer を POSTCSS のプラグインとしてインストールする
 tailwind は一番はじめにインストールしたので、POSTCSS のと Autoprefixer を追加インストールは不要
 
-VSCode の issue が発生した
+VSCode の issue が発生したため、下記参照の上対応
 Unknown at rule @tailwindcss(unknownAtRules) for base, components, utilities (Tailwind CSS) #103163
 https://github.com/microsoft/vscode/issues/103163
 
-https://qiita.com/masakinihirota/items/bd8c07aa54efad307588
 setting.json でエラーを無視するように設定
+https://qiita.com/masakinihirota/items/bd8c07aa54efad307588
 
-エラー出たので一旦アンインストールして下記コマンドを実施する
-npm install tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9
+上記にて TailwindCSS が通常に動くことを確認
 
-https://zenn.dev/junki555/articles/4a262d03c58c4e993b95
+＊＊環境構築を実施する＊＊
 
-https://hacknote.jp/archives/25914/
-
-通常の挙動を確認したので、
-
-# UI ライブラリ
-
-Headless UI を使ってみる
-ドキュメントを見てインストールを実施
-
-npm install @headlessui/react 　のコマンドを流す
-
-https://headlessui.dev/
-https://github.com/tailwindlabs/headlessui/tree/main/packages/%40headlessui-react
-
+参考：
 form のスタイリングの際に以下をインストールしました、
 @tailwindcss/forms
 https://absarcs.info/how-to/customize-form-tailwind-css/
 
-１．header / footer をコンポーネント化する → 　完了
-２．スタイルを適用する　 → 　完了
-３．ルーティングの実装を行う　 → 　完了　複雑なルーティングを設定するときにはコンポーネントを分けることにする
+# UI ライブラリ
 
-↑：9 月 17 日に完了
+＊＊Headless UI の利用準備＊＊
+以下コマンドの実施
+npm install @headlessui/react
 
-４．UI ライブラリの適用をしてみる　
-　　　　 Home ページにカレンダーを表示させてみる
-　　　　 Todo アプリの追加、更新、削除ボタンを使ってメッセージを表示させる
+https://headlessui.dev/
+https://github.com/tailwindlabs/headlessui/tree/main/packages/%40headlessui-react
 
-A.各 TODO の個数制限を加える
-　　 Working は３つまで　
-　　 Pending は 5 つまで
+今回は、Disclosure を実装
+https://headlessui.dev/react/disclosure
 
-指定個数以上を追加しようとした時に Toast が表示されるように実装してみる
-　　https://react-hot-toast.com/
-　　https://react-hot-toast.com/docs
+# Toast
 
-ボタンを押した時に Toase を表示するを実装してみたところ、
-配列を編集する onClick 関数が動かなくなってしまった
+下記、確認の上実装
+https://react-hot-toast.com/
+https://react-hot-toast.com/docs
 
-B.HeadlessUI の Disclosure を使ってアプリの操作説明を Home ページに設定してみる
-　　https://headlessui.dev/react/disclosure
-　　　 → 　テスト的に何個か設定
+TODO のボタンを押された時に Toast が表示されるようになったことを確認
 
-heroicons というものがあるらしい
-使ってみる
+# HerosIcon
+
+HerosIcon を利用してコンポーネント化された Icon を利用
+Readme を確認して、インストールを実施
+https://github.com/tailwindlabs/heroicons
 https://dev.appswingby.com/%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89/heroicons-v1-0/
+
+npm install @heroicons/react 　を流したところ以下エラーが発生
 
 ERESOLVE overriding peer dependency
 Found: csstype@3.0.9
@@ -237,25 +228,15 @@ npm WARN node_modules/goober
 npm WARN goober@"^2.0.35" from react-hot-toast@2.1.1
 npm WARN node_modules/react-hot-toast
 
-https://github.com/tailwindlabs/heroicons
-
-上記エラーからパッケージの解決ができていないように想定できたので
+パッケージの依存関係の解決ができていないように想定できたので
 一旦、uninstall の上
-npm install --save --legacy-peer-deps @heroicons/react
-にてインストールし直した
+npm install --save --legacy-peer-deps @heroicons/react 　にてインストールし直した
 
 一旦 Home ページへの記載は完了したので OK
 中身の文章は後から考えることにする
 
-C.Home ページにカレンダーを表示させてみる
-　　カレンダー表示は React-calendar を使う
-　　https://github.com/wojtekmaj/react-calendar
-　　　 → CompleteTodo に入った日付を記録して、
-　　　　　カレンダー内に Todo を反映させられるようにしてみたい
-　　　　　長いこと更新されていなかったので Fullcalendar 使ってみる
-
-https://fullcalendar.io/docs/react
-
-５．TailwindCSS を使ってレスポンシブデザインへ変えてみる
-
-→ ここまで終わったら、課題完了の報告を行う
+**_今後追加で実装したいこと_**
+　スタイルを整える　- 画面幅に応じた表示がされるよう適用　
+　 TailwindCSS 　で　カスタムフォントの適用
+　カレンダーのライブラリを用途を考えて使ってみる
+　ルーティング先ページが何も表示されていないので、コンテンツを足してみる

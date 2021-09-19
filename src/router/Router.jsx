@@ -26,6 +26,9 @@ export const Router = () => {
               <Route path={`${url}/detail`}>
                 <UserDetail />
               </Route>
+              <Route path="*">
+                <Page404 />
+              </Route>
             </Switch>
           );
         }}
