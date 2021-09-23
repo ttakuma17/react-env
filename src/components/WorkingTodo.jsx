@@ -1,6 +1,6 @@
-import React from "react";
+import React, { memo } from "react";
 
-export const WorkingTodo = (props) => {
+export const WorkingTodo = memo((props) => {
   const { workingTodos, onClickPending, onClickDone } = props;
   return (
     <div className="bg-gray-50 rounded-md p-1 m-2">
@@ -11,6 +11,7 @@ export const WorkingTodo = (props) => {
         {workingTodos.map((todo, index) => {
           return (
             <li key={todo}>
+              {console.log("WorkingTodoがレンダリングされました")}
               <div className="flex">
                 <p className="text-indigo-900 m-1.5">{todo}</p>
                 <button
@@ -36,4 +37,4 @@ export const WorkingTodo = (props) => {
       </ul>
     </div>
   );
-};
+});

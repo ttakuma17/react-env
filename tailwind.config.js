@@ -3,7 +3,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      fontFamily: {},
+      fontFamily: {
+        noto: ["Noto Sans"],
+      },
     },
     screens: {
       tablet: "640px",

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, memo, useCallback } from "react";
+import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { CompleteTodo } from "./components/CompleteTodo";
 import { IncompleteTodo } from "./components/IncompleteTodo";
@@ -6,7 +7,7 @@ import { InputTodo } from "./components/InputTodo";
 import { PendingTodo } from "./components/PendingTodo";
 import { WorkingTodo } from "./components/WorkingTodo";
 
-export const TodoPage = () => {
+export const TodoPage = memo(() => {
   const [todoText, setTodoText] = useState("");
   const [incompleteTodo, setIncompleteTodo] = useState([
     "未完了のTodo１",
@@ -24,10 +25,14 @@ export const TodoPage = () => {
     "完了したTodo１",
     "完了したTodo2",
   ]);
+
   const toastNotify = (action) => {
     switch (action) {
       case "Input":
         toast("Added new Todo");
+        break;
+      case "InputNone":
+        toast("Should type your Todo");
         break;
       case "Update":
         toast("Updated Todo status");
@@ -42,17 +47,22 @@ export const TodoPage = () => {
     }
   };
 
-  const onChangeTodoText = (event) => {
+  const onChangeTodoText = useCallback((event) => {
     setTodoText(event.target.value);
-  };
-  const onClickAdd = () => {
-    if (todoText === "") return;
+  }, []);
+
+  const onClickAdd = useCallback(() => {
+    if (todoText === "") {
+      toastNotify("InputNone");
+      return;
+    }
     const newIncompleteTodo = [...incompleteTodo, todoText];
     setIncompleteTodo(newIncompleteTodo);
     setTodoText("");
     toastNotify("Input");
-  };
-  const onClickDelete = (index, listname) => {
+  }, []);
+
+  const onClickDelete = useCallback((index, listname) => {
     switch (listname) {
       case "incompletelist": {
         const newIncompleteTodo = [...incompleteTodo];
@@ -73,9 +83,9 @@ export const TodoPage = () => {
         console.log("エラーが発生しています");
       }
     }
-  };
+  }, []);
 
-  const onClickWorking = (index, listname) => {
+  const onClickWorking = useCallback((index, listname) => {
     switch (listname) {
       case "incompletelist": {
         const newIncompleteTodo = [...incompleteTodo];
@@ -102,8 +112,8 @@ export const TodoPage = () => {
         console.log("エラーが発生しています");
       }
     }
-  };
-  const onClickPending = (index, listname) => {
+  }, []);
+  const onClickPending = useCallback((index, listname) => {
     switch (listname) {
       case "incompletelist": {
         const newIncompleteTodo = [...incompleteTodo];
@@ -130,16 +140,16 @@ export const TodoPage = () => {
         console.log("エラーが発生しています");
       }
     }
-  };
-  const onClickDone = (index) => {
+  }, []);
+  const onClickDone = useCallback((index) => {
     const newWorkingTodo = [...workingTodo];
     newWorkingTodo.splice(index, 1);
     const newCompleteTodo = [...completeTodo, workingTodo[index]];
     setWorkingTodo(newWorkingTodo);
     setCompleteTodo(newCompleteTodo);
     toastNotify("Complete");
-  };
-  const onClickBackTodo = (index, listname) => {
+  }, []);
+  const onClickBackTodo = useCallback((index, listname) => {
     switch (listname) {
       case "completelist": {
         const newCompleteTodo = [...completeTodo];
@@ -169,10 +179,20 @@ export const TodoPage = () => {
         console.log("エラーが発生しています");
       }
     }
+  }, []);
+
+  const getJsonData = () => {
+    axios
+      .get("https://jsonplaceholder.typicode.com/todos")
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
+
   return (
     <div className="font-body">
       <Toaster />
+      {console.log("TodoPageがレンダリングされました")}
+      <button onClick={getJsonData}>JSONの取得</button>
       <InputTodo
         todoText={todoText}
         onChange={onChangeTodoText}
@@ -201,4 +221,4 @@ export const TodoPage = () => {
       />
     </div>
   );
-};
+});

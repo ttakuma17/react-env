@@ -1,10 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 import { Disclosure } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 
-export const Example = () => {
+export const Example = memo(() => {
   return (
     <div className="w-full px-4 pt-16">
+      {console.log("Exampleがレンダリングされました")}
       <div className="w-full max-w-md p-2 mx-auto bg-white rounded-2xl">
         <Disclosure>
           {({ open }) => (
@@ -45,4 +46,4 @@ export const Example = () => {
       </div>
     </div>
   );
-};
+});

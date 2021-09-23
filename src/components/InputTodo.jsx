@@ -1,9 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 
-export const InputTodo = (props) => {
+export const InputTodo = memo((props) => {
   const { todoText, onChange, onClick } = props;
   return (
     <div className="bg-gray-50 rounded-md p-1 m-2 h-30px">
+      {console.log("InputTodoがレンダリングされました")}
       <form action="" className="w-2/4 pt-3 pl-1">
         <div className="mb-4 flex">
           <input
@@ -25,4 +26,4 @@ export const InputTodo = (props) => {
       </form>
     </div>
   );
-};
+});

@@ -1,11 +1,14 @@
 /* ./src/index.css */
 @tailwind+ base;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital@0;1&display=swap");
+
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
     margin: 0;
+    font-family: "font-noto";
   }
   h1 {
     @apply text-3xl;

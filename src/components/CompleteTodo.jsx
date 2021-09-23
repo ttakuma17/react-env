@@ -1,6 +1,6 @@
-import React from "react";
+import React, { memo } from "react";
 
-export const CompleteTodo = (props) => {
+export const CompleteTodo = memo((props) => {
   const { completeTodos, onClickBackTodo, onClickDelete } = props;
   return (
     <div className="bg-gray-50 rounded-md p-1 m-2">
@@ -11,6 +11,7 @@ export const CompleteTodo = (props) => {
         {completeTodos.map((todo, index) => {
           return (
             <li key={todo}>
+              {console.log("CompleteTodoがレンダリングされました")}
               <div className="flex">
                 <p className="text-indigo-900 m-1.5">{todo}</p>
                 <button
@@ -36,4 +37,4 @@ export const CompleteTodo = (props) => {
       </ul>
     </div>
   );
-};
+});

@@ -1,74 +1,3 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
 ### install procedure
 
 1. node と npm のインストールが完了しているかを確認する
@@ -235,8 +164,44 @@ npm install --save --legacy-peer-deps @heroicons/react 　にてインストー�
 一旦 Home ページへの記載は完了したので OK
 中身の文章は後から考えることにする
 
+# Axios
+
+以下を参照し、axios のインストールを実施
+https://axios-http.com/docs/intro
+
+npm install axios / yarn add axios 　のいずれかを用いる
+
+JSONplaceholder を利用してデータを取得する
+https://jsonplaceholder.typicode.com/todos
+
 **_今後追加で実装したいこと_**
-　スタイルを整える　- 画面幅に応じた表示がされるよう適用　
+　スタイルを整える　- 画面幅に応じた表示がされるよう適用　今はレイアウトが崩れてしまっている　
 　 TailwindCSS 　で　カスタムフォントの適用
-　カレンダーのライブラリを用途を考えて使ってみる
+　カレンダーのライブラリを用途を考えて使ってみたい
 　ルーティング先ページが何も表示されていないので、コンテンツを足してみる
+
+todo の input にフォーカス当たっている状態でエンターキー押すと画面のリロード走っているようです
+リロード後の URL
+http://localhost:3000/todopage?
+
+これを回避しつつ、エンターキーで todo の追加できると良さそうですっ
+
+エンターを押したときのイベントを設定
+　エンターが押されたら　 AddTodo 関数が走るみたいな処理
+
+レンダリング最適化は残課題として実施する
+
+JSON 経由での取得は完了
+　 TODO の初期値として現状欲しいデータは
+　 title に記載のテキストのみ、index で 2 つ取得するようにする
+　上記データを取得したら、取得データを配列に格納する関数を実行するところまでで完了
+　初期値として表示させるという方針になりそう
+
+該当データ自体は　 data: Array(200)　と表示される。
+
+axios
+.get("https://jsonplaceholder.typicode.com/todos")
+.then((res) => console.log(res))
+.catch((err) => console.log(err));
+配列の中に格納されたオブジェクトの中の要素を取得することができていない
+→ 　実装方法を検討する、かつ　 JS の基礎のところなので復習を行う

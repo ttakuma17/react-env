@@ -1,6 +1,6 @@
-import React from "react";
+import React, { memo } from "react";
 
-export const IncompleteTodo = (props) => {
+export const IncompleteTodo = memo((props) => {
   const { incompleteTodos, onClickWorking, onClickPending, onClickDelete } =
     props;
   return (
@@ -12,6 +12,7 @@ export const IncompleteTodo = (props) => {
         {incompleteTodos.map((todo, index) => {
           return (
             <li key={todo}>
+              {console.log("IncompleteTodoがレンダリングされました")}
               <div className="flex">
                 <p className="text-indigo-900 m-1.5">{todo}</p>
                 <button
@@ -45,4 +46,4 @@ export const IncompleteTodo = (props) => {
       </ul>
     </div>
   );
-};
+});

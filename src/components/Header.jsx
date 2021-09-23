@@ -1,13 +1,15 @@
 import { ArrowCircleRightIcon } from "@heroicons/react/solid";
-import React from "react";
+import React, { memo } from "react";
 import { BrowserRouter, Link } from "react-router-dom";
 import { Router } from "../router/Router";
 
-export const Header = () => {
+// Header.jsxが再レンダリングされると、
+export const Header = memo(() => {
   return (
     <BrowserRouter>
       <header className="bg-blue-500 p-2 block align-middle flex">
-        <h1 className="text-2xl text-white mt-0 mb-0 p-1 font-sans">
+        {console.log("Headerがレンダリングされました")}
+        <h1 className="text-2xl text-white mt-0 mb-0 p-1 font-noto">
           Your Todo List
         </h1>
         <div className="flex w-25px ml-auto">
@@ -33,4 +35,4 @@ export const Header = () => {
       <Router />
     </BrowserRouter>
   );
-};
+});
