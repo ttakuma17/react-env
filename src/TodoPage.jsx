@@ -8,24 +8,6 @@ import { PendingTodo } from "./components/PendingTodo";
 import { WorkingTodo } from "./components/WorkingTodo";
 
 export const TodoPage = memo(() => {
-  const getJsonData = (index) => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/todos")
-      .then((res) => {
-        // return res.data[index].title; // 値が返却されていない
-        const result = res.data[index].title;
-        // console.log(typeof result); // 文字列 string
-        // console.log(result); // electus aut autem(index 0 の場合)
-        return result;
-      })
-      .catch((err) => console.log(err));
-  };
-
-  console.log(typeof getJsonData(0)); // undefined
-  console.log(getJsonData(0)); // undefined
-  const test = getJsonData(0);
-  console.log(test); // undefined
-
   const [todoText, setTodoText] = useState("");
   const [incompleteTodo, setIncompleteTodo] = useState([
     "未完了のTodo１",
@@ -43,6 +25,38 @@ export const TodoPage = memo(() => {
     "完了したTodo１",
     "完了したTodo2",
   ]);
+
+  const getJsonData = () => {
+    const data = axios
+      .get("https://jsonplaceholder.typicode.com/todos")
+      .then((res) => {
+        const result = res.data[1].title;
+        // console.log(typeof result);
+        // console.log(result);
+        return result;
+      })
+      .catch((err) => console.log(err));
+    return data;
+  };
+
+  // getJsonData().then();
+
+  // console.log(typeof getJsonData(0));
+  // console.log(getJsonData());
+
+  getJsonData().then(
+    (data) => {
+      // resolveの処理
+      console.log(data);
+      // const initIncompleteTodo = [...incompleteTodo, data];
+      // setIncompleteTodo(initIncompleteTodo);
+      // 一旦テキストを取り出して、データ表示はできたが無限ループに陥った
+    },
+    () => {
+      // rejectの処理
+      console.log("rejectされた");
+    }
+  );
 
   const toastNotify = (action) => {
     switch (action) {
@@ -218,7 +232,6 @@ export const TodoPage = memo(() => {
     <div className="font-body">
       <Toaster />
       {console.log("TodoPageがレンダリングされました")}
-      {/* <button onClick={getJsonData(2)}>JSONの取得</button> */}
       <InputTodo
         todoText={todoText}
         onChange={onChangeTodoText}
