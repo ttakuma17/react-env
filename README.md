@@ -174,6 +174,19 @@ npm install axios / yarn add axios 　のいずれかを用いる
 JSONplaceholder を利用してデータを取得する
 https://jsonplaceholder.typicode.com/todos
 
+# eslint-plugin-react-hooks 　のインストール
+
+以下コマンドを用いて行う
+npm install eslint-plugin-react-hooks --save-dev / yarn add eslint-plugin-react-hooks --dev
+
+eslint config
+{
+"extends": [
+// ...
+"plugin:react-hooks/recommended"
+]
+}
+
 **_今後追加で実装したいこと_**
 　スタイルを整える　- 画面幅に応じた表示がされるよう適用　今はレイアウトが崩れてしまっている　
 　 TailwindCSS 　で　カスタムフォントの適用
@@ -205,3 +218,12 @@ axios
 .catch((err) => console.log(err));
 配列の中に格納されたオブジェクトの中の要素を取得することができていない
 → 　実装方法を検討する、かつ　 JS の基礎のところなので復習を行う
+
+手順確認の上取得できることを確認
+後は取得した値をリストへ初期値として格納しちゃえば OK
+
+テキストボックスにフォーカスがあたっているときにエンターキーを押すとリロードされる
+　 → 　テキストボックスに値がない場合は、イベントを止める
+　　 入力値があれば、エンターキーを押したときにサブミットするように処理を記載する
+
+結構難しそう。。。
