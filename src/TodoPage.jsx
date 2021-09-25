@@ -1,4 +1,4 @@
-import React, { useState, memo, useCallback } from "react";
+import React, { useState, memo, useCallback, useEffect } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { CompleteTodo } from "./components/CompleteTodo";
@@ -31,31 +31,29 @@ export const TodoPage = memo(() => {
       .get("https://jsonplaceholder.typicode.com/todos")
       .then((res) => {
         const result = res.data[1].title;
-        // console.log(typeof result);
-        // console.log(result);
         return result;
       })
       .catch((err) => console.log(err));
     return data;
   };
 
-  // getJsonData().then();
-
-  // console.log(typeof getJsonData(0));
-  // console.log(getJsonData());
-
-  getJsonData().then(
-    (data) => {
-      // resolveの処理
-      console.log(data);
-      // const initIncompleteTodo = [...incompleteTodo, data];
-      // setIncompleteTodo(initIncompleteTodo);
-      // 一旦テキストを取り出して、データ表示はできたが無限ループに陥った
-    },
-    () => {
-      // rejectの処理
-      console.log("rejectされた");
-    }
+  useEffect(
+    getJsonData().then(
+      (data) => {
+        // resolveの処理
+        console.log(data);
+        // const initIncompleteTodo = [...incompleteTodo, data];
+        // setIncompleteTodo(initIncompleteTodo);
+        // 一旦テキストを取り出して、データ表示はできたが無限ループに陥った
+        // const initIncompleteTodo = incompleteTodo.push(data);
+        // setIncompleteTodo(initIncompleteTodo);// typeError: Unhandled Rejection
+      },
+      () => {
+        // rejectの処理
+        console.log("rejectされた");
+      }
+    ),
+    []
   );
 
   const toastNotify = (action) => {
