@@ -9,10 +9,7 @@ import { WorkingTodo } from "./components/WorkingTodo";
 
 export const TodoPage = memo(() => {
   const [todoText, setTodoText] = useState("");
-  const [incompleteTodo, setIncompleteTodo] = useState([
-    "未完了のTodo１",
-    "未完了のTodo2",
-  ]);
+  const [incompleteTodo, setIncompleteTodo] = useState([]);
   const [workingTodo, setWorkingTodo] = useState([
     "処理中のTodo１",
     "処理中のTodo2",
@@ -37,24 +34,42 @@ export const TodoPage = memo(() => {
     return data;
   };
 
+  // getJsonData().then(
+  //   (data) => {
+  //     // resolveの処理
+  //     console.log(data);
+  //     // const initIncompleteTodo = [...incompleteTodo, data];
+  //     // setIncompleteTodo(initIncompleteTodo);
+  //     // 一旦テキストを取り出して、データ表示はできたが無限ループに陥った
+  //     // const initIncompleteTodo = incompleteTodo.push(data);
+  //     // setIncompleteTodo(initIncompleteTodo); // typeError: Unhandled Rejection
+  //   },
+  //   () => {
+  //     // rejectの処理
+  //     console.log("rejectされた");
+  //   }
+  // );
+
   useEffect(
-    getJsonData().then(
-      (data) => {
-        // resolveの処理
-        console.log(data);
-        // const initIncompleteTodo = [...incompleteTodo, data];
-        // setIncompleteTodo(initIncompleteTodo);
-        // 一旦テキストを取り出して、データ表示はできたが無限ループに陥った
-        // const initIncompleteTodo = incompleteTodo.push(data);
-        // setIncompleteTodo(initIncompleteTodo);// typeError: Unhandled Rejection
-      },
-      () => {
-        // rejectの処理
-        console.log("rejectされた");
-      }
-    ),
+    getJsonData()
+      .then((data) => {
+        //  console.log(data); // ここまではデータが渡っている
+        return data;
+      })
+      .then((todo) => {
+        console.log(todo); // 引数が引き継がれていることを確認
+        const initIncompleteTodo = [...incompleteTodo, todo];
+        console.log(initIncompleteTodo);
+        setIncompleteTodo(initIncompleteTodo);
+
+        // incompleteTodo.push(todo);
+        // console.log(incompleteTodo); // 配列への格納が完了
+        // const initTodo = incompleteTodo.push(todo);
+        // console.log(typeof initTodo); // numberが返却されている
+      }),
     []
   );
+  // useEffectを使っていないので、setIncompleteTodoを利用して再レンダリングを検知すると無限ループに陥りそう。。。
 
   const toastNotify = (action) => {
     switch (action) {
