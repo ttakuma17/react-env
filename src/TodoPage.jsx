@@ -10,66 +10,62 @@ import { WorkingTodo } from "./components/WorkingTodo";
 export const TodoPage = memo(() => {
   const [todoText, setTodoText] = useState("");
   const [incompleteTodo, setIncompleteTodo] = useState([]);
-  const [workingTodo, setWorkingTodo] = useState([
-    "処理中のTodo１",
-    "処理中のTodo2",
-  ]);
-  const [pendingTodo, setPendingTodo] = useState([
-    "保留中のTodo１",
-    "保留中のTodo2",
-  ]);
-  const [completeTodo, setCompleteTodo] = useState([
-    "完了したTodo１",
-    "完了したTodo2",
-  ]);
+  const [workingTodo, setWorkingTodo] = useState([]);
+  const [pendingTodo, setPendingTodo] = useState([]);
+  const [completeTodo, setCompleteTodo] = useState([]);
 
-  const getJsonData = () => {
+  const getJsonData = (index) => {
     const data = axios
       .get("https://jsonplaceholder.typicode.com/todos")
       .then((res) => {
-        const result = res.data[1].title;
+        const result = res.data[index].title;
         return result;
       })
       .catch((err) => console.log(err));
     return data;
   };
 
-  // getJsonData().then(
-  //   (data) => {
-  //     // resolveの処理
-  //     console.log(data);
-  //     // const initIncompleteTodo = [...incompleteTodo, data];
-  //     // setIncompleteTodo(initIncompleteTodo);
-  //     // 一旦テキストを取り出して、データ表示はできたが無限ループに陥った
-  //     // const initIncompleteTodo = incompleteTodo.push(data);
-  //     // setIncompleteTodo(initIncompleteTodo); // typeError: Unhandled Rejection
-  //   },
-  //   () => {
-  //     // rejectの処理
-  //     console.log("rejectされた");
-  //   }
-  // );
+  // eslint-disable-next-line
+  useEffect(() => {
+    console.log("test");
+    getJsonData(0).then((data) => {
+      console.log(data); // ここまではデータが渡っている
+      const initIncompleteTodo = [...incompleteTodo, data, data];
+      console.log(initIncompleteTodo);
+      setIncompleteTodo(initIncompleteTodo);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  useEffect(
-    getJsonData()
-      .then((data) => {
-        //  console.log(data); // ここまではデータが渡っている
-        return data;
-      })
-      .then((todo) => {
-        console.log(todo); // 引数が引き継がれていることを確認
-        const initIncompleteTodo = [...incompleteTodo, todo];
-        console.log(initIncompleteTodo);
-        setIncompleteTodo(initIncompleteTodo);
+  useEffect(() => {
+    getJsonData(1).then((data) => {
+      console.log(data); // ここまではデータが渡っている
+      const initWorkingTodo = [...workingTodo, data, data];
+      console.log(initWorkingTodo);
+      setWorkingTodo(initWorkingTodo);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-        // incompleteTodo.push(todo);
-        // console.log(incompleteTodo); // 配列への格納が完了
-        // const initTodo = incompleteTodo.push(todo);
-        // console.log(typeof initTodo); // numberが返却されている
-      }),
-    []
-  );
-  // useEffectを使っていないので、setIncompleteTodoを利用して再レンダリングを検知すると無限ループに陥りそう。。。
+  useEffect(() => {
+    getJsonData(2).then((data) => {
+      console.log(data); // ここまではデータが渡っている
+      const initPendingTodo = [...pendingTodo, data, data];
+      console.log(initPendingTodo);
+      setPendingTodo(initPendingTodo);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    getJsonData(3).then((data) => {
+      console.log(data); // ここまではデータが渡っている
+      const initCompleteTodo = [...completeTodo, data, data];
+      console.log(initCompleteTodo);
+      setCompleteTodo(initCompleteTodo);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const toastNotify = (action) => {
     switch (action) {

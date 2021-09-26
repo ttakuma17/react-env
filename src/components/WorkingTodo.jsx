@@ -5,7 +5,7 @@ export const WorkingTodo = memo((props) => {
   return (
     <div className="bg-gray-50 rounded-md p-1 m-2">
       <p className="text-white text-lg text-center bg-blue-400 border-solid border4 border-blue-400 rounded-md w-1/4">
-        Working Todo
+        Working Todo List
       </p>
       <ul>
         {workingTodos.map((todo, index) => {
