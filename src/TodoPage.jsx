@@ -27,11 +27,8 @@ export const TodoPage = memo(() => {
 
   // eslint-disable-next-line
   useEffect(() => {
-    console.log("test");
     getJsonData(0).then((data) => {
-      console.log(data); // ここまではデータが渡っている
       const initIncompleteTodo = [...incompleteTodo, data, data];
-      console.log(initIncompleteTodo);
       setIncompleteTodo(initIncompleteTodo);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -39,9 +36,7 @@ export const TodoPage = memo(() => {
 
   useEffect(() => {
     getJsonData(1).then((data) => {
-      console.log(data); // ここまではデータが渡っている
       const initWorkingTodo = [...workingTodo, data, data];
-      console.log(initWorkingTodo);
       setWorkingTodo(initWorkingTodo);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -49,9 +44,7 @@ export const TodoPage = memo(() => {
 
   useEffect(() => {
     getJsonData(2).then((data) => {
-      console.log(data); // ここまではデータが渡っている
       const initPendingTodo = [...pendingTodo, data, data];
-      console.log(initPendingTodo);
       setPendingTodo(initPendingTodo);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -59,9 +52,7 @@ export const TodoPage = memo(() => {
 
   useEffect(() => {
     getJsonData(3).then((data) => {
-      console.log(data); // ここまではデータが渡っている
       const initCompleteTodo = [...completeTodo, data, data];
-      console.log(initCompleteTodo);
       setCompleteTodo(initCompleteTodo);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -240,7 +231,6 @@ export const TodoPage = memo(() => {
   return (
     <div className="font-body">
       <Toaster />
-      {console.log("TodoPageがレンダリングされました")}
       <InputTodo
         todoText={todoText}
         onChange={onChangeTodoText}

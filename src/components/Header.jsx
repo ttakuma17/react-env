@@ -8,7 +8,6 @@ export const Header = memo(() => {
   return (
     <BrowserRouter>
       <header className="bg-blue-500 p-2 block align-middle flex">
-        {console.log("Headerがレンダリングされました")}
         <h1 className="text-2xl text-white mt-0 mb-0 p-1 font-noto">
           Your Todo List
         </h1>

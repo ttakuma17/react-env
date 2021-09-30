@@ -12,7 +12,7 @@ node -v / npm -v
 
 npx create react-app プロジェクト名
 
-3.プロジェクトの作成が完了したら
+3.プロジェクトの作成が完了したら 55
 
 cd プロジェクト名
 　 npm start / yarn start 　などのメッセージがでるはずなので

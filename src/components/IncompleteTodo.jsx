@@ -12,7 +12,6 @@ export const IncompleteTodo = memo((props) => {
         {incompleteTodos.map((todo, index) => {
           return (
             <li key={todo}>
-              {console.log("IncompleteTodoがレンダリングされました")}
               <div className="flex">
                 <p className="text-indigo-900 m-1.5">{todo}</p>
                 <button

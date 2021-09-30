@@ -11,7 +11,6 @@ export const WorkingTodo = memo((props) => {
         {workingTodos.map((todo, index) => {
           return (
             <li key={todo}>
-              {console.log("WorkingTodoがレンダリングされました")}
               <div className="flex">
                 <p className="text-indigo-900 m-1.5">{todo}</p>
                 <button
