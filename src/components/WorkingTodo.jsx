@@ -1,14 +1,28 @@
-import React, { memo } from "react";
+import React, { memo, useContext, useEffect } from "react";
+import { workingTodoContext } from "./providers/WorkingTodoProvider";
+import { useGetTodos } from "../hooks/useGetTodos";
 
 export const WorkingTodo = memo((props) => {
-  const { workingTodos, onClickPending, onClickDone } = props;
+  const { onClickPending, onClickDone } = props;
+  const { getJsonData } = useGetTodos();
+  const [workingTodo, setWorkingTodo] = useContext(workingTodoContext);
+
+  // workingTodoの初期値を設定
+  useEffect(() => {
+    getJsonData(1).then((data) => {
+      const initWorkingTodo = [...workingTodo, data, data];
+      setWorkingTodo(initWorkingTodo);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="bg-gray-50 rounded-md p-1 m-2">
       <p className="text-white text-lg text-center bg-blue-400 border-solid border4 border-blue-400 rounded-md w-1/4">
         Working Todo List
       </p>
       <ul>
-        {workingTodos.map((todo, index) => {
+        {workingTodo.map((todo, index) => {
           return (
             <li key={todo}>
               <div className="flex">

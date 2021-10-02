@@ -1,7 +1,10 @@
-import React, { memo } from "react";
+import React, { memo, useContext } from "react";
+import { inputTodoContext } from "./providers/InputTodoProvider";
 
 export const InputTodo = memo((props) => {
-  const { todoText, onChange, onClick } = props;
+  const { onChange, onClick } = props;
+  const [todoText] = useContext(inputTodoContext);
+
   return (
     <div className="bg-gray-50 rounded-md p-1 m-2 h-30px">
       <form className="w-2/4 pt-3 pl-1">

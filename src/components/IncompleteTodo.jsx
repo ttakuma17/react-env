@@ -1,15 +1,28 @@
-import React, { memo } from "react";
+import React, { memo, useContext, useEffect } from "react";
+import { incompleteTodoContext } from "./providers/IncompleteTodoProvider";
+import { useGetTodos } from "../hooks/useGetTodos";
 
 export const IncompleteTodo = memo((props) => {
-  const { incompleteTodos, onClickWorking, onClickPending, onClickDelete } =
-    props;
+  const { onClickWorking, onClickPending, onClickDelete } = props;
+  const { getJsonData } = useGetTodos();
+  const [incompleteTodo, setIncompleteTodo] = useContext(incompleteTodoContext);
+
+  // incompleteTodoの初期値を設定
+  useEffect(() => {
+    getJsonData(0).then((data) => {
+      const initIncompleteTodo = [...incompleteTodo, data, data];
+      setIncompleteTodo(initIncompleteTodo);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="bg-gray-50 rounded-md p-1 m-2">
       <p className="text-white text-lg text-center bg-blue-400 border-solid border4 border-blue-400 rounded-md w-1/4">
         Todo List
       </p>
       <ul>
-        {incompleteTodos.map((todo, index) => {
+        {incompleteTodo.map((todo, index) => {
           return (
             <li key={todo}>
               <div className="flex">

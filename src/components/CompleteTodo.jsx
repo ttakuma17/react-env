@@ -1,14 +1,27 @@
-import React, { memo } from "react";
+import React, { memo, useContext, useEffect } from "react";
+import { completeTodoContext } from "./providers/CompleteTodoProvider";
+import { useGetTodos } from "../hooks/useGetTodos";
 
 export const CompleteTodo = memo((props) => {
-  const { completeTodos, onClickBackTodo, onClickDelete } = props;
+  const { onClickBackTodo, onClickDelete } = props;
+  const { getJsonData } = useGetTodos();
+  const [completeTodo, setCompleteTodo] = useContext(completeTodoContext);
+
+  useEffect(() => {
+    getJsonData(3).then((data) => {
+      const initCompleteTodo = [...completeTodo, data, data];
+      setCompleteTodo(initCompleteTodo);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="bg-gray-50 rounded-md p-1 m-2">
       <p className="text-white text-lg text-center bg-blue-400 border-solid border4 border-blue-400 rounded-md w-1/4">
         Complete Todo List
       </p>
       <ul>
-        {completeTodos.map((todo, index) => {
+        {completeTodo.map((todo, index) => {
           return (
             <li key={todo}>
               <div className="flex">

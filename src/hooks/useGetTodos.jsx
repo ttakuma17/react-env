@@ -1,19 +1,16 @@
-// import axios from "axios";
-// import { useState } from "react";
+import axios from "axios";
+import { useCallback } from "react";
 
-// export const useGetTodos = () => {
-//   const [todoData, setTodoData] = useState([]);
-//   const wgetJsonData = () => {
-//     axios
-//       .get("https://jsonplaceholder.typicode.com/todos")
-//       .then((res) => {
-//         const todos = res.data.map((todo) => ({
-//           id: todo.id,
-//           title: todo.title,
-//         }));
-//         setTodoData(todos);
-//       })
-//       .catch((err) => console.log(err));
-//   };
-//   return { todoData, wgetJsonData };
-// };
+export const useGetTodos = () => {
+  const getJsonData = useCallback((index) => {
+    const data = axios
+      .get("https://jsonplaceholder.typicode.com/todos")
+      .then((res) => {
+        const result = res.data[index].title;
+        return result;
+      })
+      .catch((err) => console.log(err));
+    return data;
+  }, []);
+  return { getJsonData };
+};

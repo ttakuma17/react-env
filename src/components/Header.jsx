@@ -11,6 +11,7 @@ export const Header = memo(() => {
         <h1 className="text-2xl text-white mt-0 mb-0 p-1 font-noto">
           Your Todo List
         </h1>
+
         <div className="flex w-25px ml-auto">
           <Link className="text-white no-underline mr-2 p-1 flex" to="/">
             Home
