@@ -1,17 +1,30 @@
-import { useContext, useCallback } from "react";
+import { useCallback } from "react";
+import { useRecoilState } from "recoil";
 import toast, { Toaster } from "react-hot-toast";
-import { inputTodoContext } from "../components/providers/InputTodoProvider";
-import { incompleteTodoContext } from "../components/providers/IncompleteTodoProvider";
-import { workingTodoContext } from "../components/providers/WorkingTodoProvider";
-import { completeTodoContext } from "../components/providers/CompleteTodoProvider";
-import { pendingTodoContext } from "../components/providers/PendingTodoProvider";
+// import { inputTodoContext } from "../components/providers/InputTodoProvider";
+// import { incompleteTodoContext } from "../components/providers/IncompleteTodoProvider";
+// import { workingTodoContext } from "../components/providers/WorkingTodoProvider";
+// import { completeTodoContext } from "../components/providers/CompleteTodoProvider";
+// import { pendingTodoContext } from "../components/providers/PendingTodoProvider";
+import { inputTodoState } from "../components/store/inputTodoState";
+import { incompleteTodoState } from "../components/store/incompleteTodoState";
+import { completeTodoState } from "../components/store/completeTodoState";
+import { workingTodoState } from "../components/store/workingTodoState";
+import { pendingTodoState } from "../components/store/pendingTodoState";
 
 export const useButtonFunc = () => {
-  const [todoText, setTodoText] = useContext(inputTodoContext);
-  const [incompleteTodo, setIncompleteTodo] = useContext(incompleteTodoContext);
-  const [workingTodo, setWorkingTodo] = useContext(workingTodoContext);
-  const [pendingTodo, setPendingTodo] = useContext(pendingTodoContext);
-  const [completeTodo, setCompleteTodo] = useContext(completeTodoContext);
+  // const [todoText, setTodoText] = useContext(inputTodoContext);
+  const [todoText, setTodoText] = useRecoilState(inputTodoState);
+  // const [incompleteTodo, setIncompleteTodo] = useContext(incompleteTodoContext);
+  const [incompleteTodo, setIncompleteTodo] =
+    useRecoilState(incompleteTodoState);
+  // const [workingTodo, setWorkingTodo] = useContext(workingTodoContext);
+  const [workingTodo, setWorkingTodo] = useRecoilState(workingTodoState);
+  // const [pendingTodo, setPendingTodo] = useContext(pendingTodoContext);
+  const [pendingTodo, setPendingTodo] = useRecoilState(pendingTodoState);
+  // const [completeTodo, setCompleteTodo] = useContext(completeTodoContext);
+  const [completeTodo, setCompleteTodo] = useRecoilState(completeTodoState);
+
   const toastNotify = (action) => {
     switch (action) {
       case "Input":

@@ -1,4 +1,5 @@
 import React from "react";
+import { RecoilRoot } from "recoil";
 import { IncompleteTodoProvider } from "./components/providers/IncompleteTodoProvider";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
@@ -16,7 +17,9 @@ export const App = () => {
         <PendingTodoProvider>
           <ComepleteTodoProvider>
             <InputTodoProvider>
-              <Header />
+              <RecoilRoot>
+                <Header />
+              </RecoilRoot>
               <Footer />
             </InputTodoProvider>
           </ComepleteTodoProvider>

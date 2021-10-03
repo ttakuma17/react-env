@@ -1,9 +1,12 @@
-import React, { memo, useContext } from "react";
-import { inputTodoContext } from "./providers/InputTodoProvider";
+import React, { memo } from "react";
+import { useRecoilState } from "recoil";
+import { inputTodoState } from "./store/inputTodoState";
+// import { inputTodoContext } from "./providers/InputTodoProvider";
 
 export const InputTodo = memo((props) => {
   const { onChange, onClick } = props;
-  const [todoText] = useContext(inputTodoContext);
+  // const [todoText] = useContext(inputTodoContext);
+  const [todoText] = useRecoilState(inputTodoState);
 
   return (
     <div className="bg-gray-50 rounded-md p-1 m-2 h-30px">

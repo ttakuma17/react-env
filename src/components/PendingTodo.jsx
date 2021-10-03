@@ -1,11 +1,14 @@
-import React, { memo, useContext, useEffect } from "react";
-import { pendingTodoContext } from "./providers/PendingTodoProvider";
+import React, { memo, useEffect } from "react";
+// import { pendingTodoContext } from "./providers/PendingTodoProvider";
+import { useRecoilState } from "recoil";
+import { pendingTodoState } from "./store/pendingTodoState";
 import { useGetTodos } from "../hooks/useGetTodos";
 
 export const PendingTodo = memo((props) => {
   const { onClickWorking, onClickBackTodo } = props;
   const { getJsonData } = useGetTodos();
-  const [pendingTodo, setPendingTodo] = useContext(pendingTodoContext);
+  // const [pendingTodo, setPendingTodo] = useContext(pendingTodoContext);
+  const [pendingTodo, setPendingTodo] = useRecoilState(pendingTodoState);
 
   useEffect(() => {
     getJsonData(2).then((data) => {

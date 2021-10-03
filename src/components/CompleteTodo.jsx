@@ -1,11 +1,14 @@
-import React, { memo, useContext, useEffect } from "react";
-import { completeTodoContext } from "./providers/CompleteTodoProvider";
+import React, { memo, useEffect } from "react";
+import { useRecoilState } from "recoil";
+// import { completeTodoContext } from "./providers/CompleteTodoProvider";
+import { completeTodoState } from "./store/completeTodoState";
 import { useGetTodos } from "../hooks/useGetTodos";
 
 export const CompleteTodo = memo((props) => {
   const { onClickBackTodo, onClickDelete } = props;
   const { getJsonData } = useGetTodos();
-  const [completeTodo, setCompleteTodo] = useContext(completeTodoContext);
+  // const [completeTodo, setCompleteTodo] = useContext(completeTodoContext);
+  const [completeTodo, setCompleteTodo] = useRecoilState(completeTodoState);
 
   useEffect(() => {
     getJsonData(3).then((data) => {

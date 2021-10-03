@@ -1,12 +1,14 @@
-import React, { memo, useContext, useEffect } from "react";
-import { workingTodoContext } from "./providers/WorkingTodoProvider";
+import React, { memo, useEffect } from "react";
+// import { workingTodoContext } from "./providers/WorkingTodoProvider";
+import { useRecoilState } from "recoil";
+import { workingTodoState } from "./store/workingTodoState";
 import { useGetTodos } from "../hooks/useGetTodos";
 
 export const WorkingTodo = memo((props) => {
   const { onClickPending, onClickDone } = props;
   const { getJsonData } = useGetTodos();
-  const [workingTodo, setWorkingTodo] = useContext(workingTodoContext);
-
+  // const [workingTodo, setWorkingTodo] = useContext(workingTodoContext);
+  const [workingTodo, setWorkingTodo] = useRecoilState(workingTodoState);
   // workingTodoの初期値を設定
   useEffect(() => {
     getJsonData(1).then((data) => {
