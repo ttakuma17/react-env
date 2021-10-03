@@ -1,11 +1,9 @@
 import React, { memo } from "react";
 import { useRecoilState } from "recoil";
 import { inputTodoState } from "./store/inputTodoState";
-// import { inputTodoContext } from "./providers/InputTodoProvider";
 
 export const InputTodo = memo((props) => {
   const { onChange, onClick } = props;
-  // const [todoText] = useContext(inputTodoContext);
   const [todoText] = useRecoilState(inputTodoState);
 
   return (

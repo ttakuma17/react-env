@@ -1,5 +1,4 @@
 import React, { memo, useEffect } from "react";
-// import { incompleteTodoContext } from "./providers/IncompleteTodoProvider"; useContextを削除
 import { useRecoilState } from "recoil";
 import { incompleteTodoState } from "./store/incompleteTodoState";
 import { useGetTodos } from "../hooks/useGetTodos";
@@ -7,7 +6,6 @@ import { useGetTodos } from "../hooks/useGetTodos";
 export const IncompleteTodo = memo((props) => {
   const { onClickWorking, onClickPending, onClickDelete } = props;
   const { getJsonData } = useGetTodos();
-  // const [incompleteTodo, setIncompleteTodo] = useContext(incompleteTodoContext);
   const [incompleteTodo, setIncompleteTodo] =
     useRecoilState(incompleteTodoState);
 
