@@ -2,12 +2,14 @@ import React, { memo, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { incompleteTodoState } from "./store/incompleteTodoState";
 import { useGetTodos } from "../hooks/useGetTodos";
+import { useMoveItemFunc } from "../hooks/useMoveItemFunc";
 
-export const IncompleteTodo = memo((props) => {
-  const { onClickWorking, onClickPending, onClickDelete } = props;
+export const IncompleteTodo = memo(() => {
   const { getJsonData } = useGetTodos();
   const [incompleteTodo, setIncompleteTodo] =
     useRecoilState(incompleteTodoState);
+  const { incompleteToWorking, incompleteToPending, incomleteItemDelete } =
+    useMoveItemFunc();
 
   // incompleteTodoの初期値を設定
   useEffect(() => {
@@ -32,7 +34,7 @@ export const IncompleteTodo = memo((props) => {
                 <button
                   className="text-white rounded-full m-1 bg-gray-500 border-transparent hover:bg-blue-100 hover:text-blue-900 "
                   onClick={() => {
-                    onClickWorking(index, "incompletelist");
+                    incompleteToWorking(index);
                   }}
                 >
                   Working
@@ -40,7 +42,7 @@ export const IncompleteTodo = memo((props) => {
                 <button
                   className="text-white rounded-full m-1 bg-gray-500 border-transparent hover:bg-blue-100 hover:text-blue-900 "
                   onClick={() => {
-                    onClickPending(index, "incompletelist");
+                    incompleteToPending(index);
                   }}
                 >
                   Pending
@@ -48,7 +50,7 @@ export const IncompleteTodo = memo((props) => {
                 <button
                   className="text-white rounded-full m-1 bg-gray-500 border-transparent hover:bg-blue-100 hover:text-blue-900 "
                   onClick={() => {
-                    onClickDelete(index, "incompletelist");
+                    incomleteItemDelete(index);
                   }}
                 >
                   Delete

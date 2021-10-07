@@ -2,11 +2,12 @@ import React, { memo, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { completeTodoState } from "./store/completeTodoState";
 import { useGetTodos } from "../hooks/useGetTodos";
+import { useMoveItemFunc } from "../hooks/useMoveItemFunc";
 
-export const CompleteTodo = memo((props) => {
-  const { onClickBackTodo, onClickDelete } = props;
+export const CompleteTodo = memo(() => {
   const { getJsonData } = useGetTodos();
   const [completeTodo, setCompleteTodo] = useRecoilState(completeTodoState);
+  const { completeToIncomplete, completeItemDelete } = useMoveItemFunc();
 
   useEffect(() => {
     getJsonData(3).then((data) => {
@@ -30,7 +31,7 @@ export const CompleteTodo = memo((props) => {
                 <button
                   className="text-white rounded-full m-1 bg-gray-500 border-transparent hover:bg-blue-100 hover:text-blue-900 "
                   onClick={() => {
-                    onClickBackTodo(index, "completelist");
+                    completeToIncomplete(index);
                   }}
                 >
                   Back Todo
@@ -38,7 +39,7 @@ export const CompleteTodo = memo((props) => {
                 <button
                   className="text-white rounded-full m-1 bg-gray-500 border-transparent hover:bg-blue-100 hover:text-blue-900 "
                   onClick={() => {
-                    onClickDelete(index, "completelist");
+                    completeItemDelete(index);
                   }}
                 >
                   Delete

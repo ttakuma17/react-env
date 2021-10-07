@@ -1,10 +1,13 @@
 import React, { memo } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { inputTodoState } from "./store/inputTodoState";
+import { useMoveItemFunc } from "../hooks/useMoveItemFunc";
+import { useUpdateText } from "../hooks/useUpdateText";
 
-export const InputTodo = memo((props) => {
-  const { onChange, onClick } = props;
-  const [todoText] = useRecoilState(inputTodoState);
+export const InputTodo = memo(() => {
+  const todoText = useRecoilValue(inputTodoState);
+  const { addToNewIncompleteTodo } = useMoveItemFunc();
+  const { onChangeTodoText } = useUpdateText();
 
   return (
     <div className="bg-gray-50 rounded-md p-1 m-2 h-30px">
@@ -16,12 +19,14 @@ export const InputTodo = memo((props) => {
             placeholder="Enter your todo"
             size="30"
             value={todoText}
-            onChange={onChange}
+            onChange={onChangeTodoText}
           />
           <button
             type="button"
             className="text-white rounded-full m-1 bg-gray-500 border-transparent hover:bg-blue-100 hover:text-blue-900 "
-            onClick={onClick}
+            onClick={() => {
+              addToNewIncompleteTodo();
+            }}
           >
             Add
           </button>

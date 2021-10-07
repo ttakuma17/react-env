@@ -2,11 +2,13 @@ import React, { memo, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { workingTodoState } from "./store/workingTodoState";
 import { useGetTodos } from "../hooks/useGetTodos";
+import { useMoveItemFunc } from "../hooks/useMoveItemFunc";
 
-export const WorkingTodo = memo((props) => {
-  const { onClickPending, onClickDone } = props;
+export const WorkingTodo = memo(() => {
   const { getJsonData } = useGetTodos();
   const [workingTodo, setWorkingTodo] = useRecoilState(workingTodoState);
+  const { workingToPending, workingToComplete } = useMoveItemFunc();
+
   // workingTodoの初期値を設定
   useEffect(() => {
     getJsonData(1).then((data) => {
@@ -30,7 +32,7 @@ export const WorkingTodo = memo((props) => {
                 <button
                   className="text-white rounded-full m-1 bg-gray-500 border-transparent hover:bg-blue-100 hover:text-blue-900 "
                   onClick={() => {
-                    onClickPending(index, "workinglist");
+                    workingToPending(index);
                   }}
                 >
                   Pending
@@ -38,7 +40,7 @@ export const WorkingTodo = memo((props) => {
                 <button
                   className="text-white rounded-full m-1 bg-gray-500 border-transparent hover:bg-blue-100 hover:text-blue-900 "
                   onClick={() => {
-                    onClickDone(index);
+                    workingToComplete(index);
                   }}
                 >
                   Done

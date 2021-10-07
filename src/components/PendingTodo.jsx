@@ -2,11 +2,12 @@ import React, { memo, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { pendingTodoState } from "./store/pendingTodoState";
 import { useGetTodos } from "../hooks/useGetTodos";
+import { useMoveItemFunc } from "../hooks/useMoveItemFunc";
 
-export const PendingTodo = memo((props) => {
-  const { onClickWorking, onClickBackTodo } = props;
+export const PendingTodo = memo(() => {
   const { getJsonData } = useGetTodos();
   const [pendingTodo, setPendingTodo] = useRecoilState(pendingTodoState);
+  const { pendingToIncomplete, pendingToWorking } = useMoveItemFunc();
 
   useEffect(() => {
     getJsonData(2).then((data) => {
@@ -30,7 +31,7 @@ export const PendingTodo = memo((props) => {
                 <button
                   className="text-white rounded-full m-1 bg-gray-500 border-transparent hover:bg-blue-100 hover:text-blue-900 "
                   onClick={() => {
-                    onClickBackTodo(index, "pendinglist");
+                    pendingToIncomplete(index);
                   }}
                 >
                   Back Todo
@@ -38,7 +39,7 @@ export const PendingTodo = memo((props) => {
                 <button
                   className="text-white rounded-full m-1 bg-gray-500 border-transparent hover:bg-blue-100 hover:text-blue-900 "
                   onClick={() => {
-                    onClickWorking(index, "pendinglist");
+                    pendingToWorking(index);
                   }}
                 >
                   Working
