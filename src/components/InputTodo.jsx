@@ -1,8 +1,10 @@
 import React, { memo } from "react";
 import { useRecoilValue } from "recoil";
+
 import { inputTodoState } from "./store/inputTodoState";
 import { useMoveItemFunc } from "../hooks/useMoveItemFunc";
 import { useUpdateText } from "../hooks/useUpdateText";
+import { PushButton } from "./PushButton";
 
 export const InputTodo = memo(() => {
   const todoText = useRecoilValue(inputTodoState);
@@ -21,15 +23,13 @@ export const InputTodo = memo(() => {
             value={todoText}
             onChange={onChangeTodoText}
           />
-          <button
-            type="button"
-            className="text-white rounded-full m-1 bg-gray-500 border-transparent hover:bg-blue-100 hover:text-blue-900 "
-            onClick={() => {
+          <PushButton
+            onClickAction={() => {
               addToNewIncompleteTodo();
             }}
           >
             Add
-          </button>
+          </PushButton>
         </div>
       </form>
     </div>

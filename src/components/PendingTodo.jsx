@@ -1,8 +1,10 @@
 import React, { memo, useEffect } from "react";
 import { useRecoilState } from "recoil";
+
 import { pendingTodoState } from "./store/pendingTodoState";
 import { useGetTodos } from "../hooks/useGetTodos";
 import { useMoveItemFunc } from "../hooks/useMoveItemFunc";
+import { PushButton } from "./PushButton";
 
 export const PendingTodo = memo(() => {
   const { getJsonData } = useGetTodos();
@@ -28,22 +30,20 @@ export const PendingTodo = memo(() => {
             <li key={todo}>
               <div className="flex">
                 <p className="text-indigo-900 m-1.5">{todo}</p>
-                <button
-                  className="text-white rounded-full m-1 bg-gray-500 border-transparent hover:bg-blue-100 hover:text-blue-900 "
-                  onClick={() => {
+                <PushButton
+                  onClickAction={() => {
                     pendingToIncomplete(index);
                   }}
                 >
                   Back Todo
-                </button>
-                <button
-                  className="text-white rounded-full m-1 bg-gray-500 border-transparent hover:bg-blue-100 hover:text-blue-900 "
-                  onClick={() => {
+                </PushButton>
+                <PushButton
+                  onClickAction={() => {
                     pendingToWorking(index);
                   }}
                 >
                   Working
-                </button>
+                </PushButton>
               </div>
             </li>
           );

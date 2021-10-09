@@ -1,8 +1,10 @@
 import React, { memo, useEffect } from "react";
 import { useRecoilState } from "recoil";
+
 import { completeTodoState } from "./store/completeTodoState";
 import { useGetTodos } from "../hooks/useGetTodos";
 import { useMoveItemFunc } from "../hooks/useMoveItemFunc";
+import { PushButton } from "./PushButton";
 
 export const CompleteTodo = memo(() => {
   const { getJsonData } = useGetTodos();
@@ -28,22 +30,20 @@ export const CompleteTodo = memo(() => {
             <li key={todo}>
               <div className="flex">
                 <p className="text-indigo-900 m-1.5">{todo}</p>
-                <button
-                  className="text-white rounded-full m-1 bg-gray-500 border-transparent hover:bg-blue-100 hover:text-blue-900 "
-                  onClick={() => {
+                <PushButton
+                  onClickAction={() => {
                     completeToIncomplete(index);
                   }}
                 >
                   Back Todo
-                </button>
-                <button
-                  className="text-white rounded-full m-1 bg-gray-500 border-transparent hover:bg-blue-100 hover:text-blue-900 "
-                  onClick={() => {
+                </PushButton>
+                <PushButton
+                  onClickAction={() => {
                     completeItemDelete(index);
                   }}
                 >
                   Delete
-                </button>
+                </PushButton>
               </div>
             </li>
           );
